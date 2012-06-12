@@ -1,0 +1,20 @@
+MODULE_XCC_C_FLAGS = $(XCC_FLAGS) -Os
+
+OPTIONAL_HEADERS += web_server_conf.h
+
+GENERATED_FILES = web_files.c web_server_gen.h
+
+WEB_FILES = $(foreach x,$(call GET_ALL_SUBDIRS,$(WEB_ROOT_DIR)),$(call WILDCARD,$x/*))
+
+WEBFS_TYPE ?= flash
+
+$(GEN_DIR)/website.generated: $(WEB_FILES) $(CURRENT_MODULE_DIR)/src/makefs.py | $(GEN_DIR)
+	@echo "Generating file system for web site"
+	@$(call JYTHON,$(CURRENT_MODULE_DIR)/src/makefs.py $(WEB_ROOT_DIR) $(GEN_DIR)/web_files.c $(WEBFS_TYPE) $(BIN_DIR)/web_data.bin $(GEN_DIR)/web_server_gen.h)
+	@echo "generated" > $(GEN_DIR)/website.generated
+
+$(GEN_DIR)/web_files.c : $(GEN_DIR)/website.generated
+	@echo "Generated web_files.c"
+
+$(GEN_DIR)/web_server_gen.h : $(GEN_DIR)/website.generated
+	@echo "Generated web_server_gen.h"

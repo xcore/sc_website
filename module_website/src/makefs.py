@@ -1,0 +1,165 @@
+import sys
+import os
+import re
+
+def get_id(root, name=None):
+    root = root.replace('/','_')
+    root = root.replace('\\','_')
+    if name:
+        name = name.replace('.','_dot_')
+        return '_'+root+'_'+name
+    else:
+        return '_'+root
+
+def get_next_ptr(root, fs, i):
+    if i < len(fs)-1:
+        return '&' + get_id(root,fs[i+1])
+    else:
+        return 'NULL'
+
+def to_char_array(s,add_null = True):
+    chars = [str(ord(c)) for c in s]
+    if add_null:
+        chars.append('0')
+    return '{' + ','.join(chars) + '}'
+
+header = "HTTP/1.0 200 OK\r\nServer: XMOS\r\nContent-type: text/html\r\n\r\n"
+
+def process_file(path):
+    global dyn_exprs, dyn_expr_count, decls
+    f = open(path,"rb")
+    bytes = []
+    while True:
+        byte = f.read(1)
+        if byte == "":
+            break
+        bytes.append(byte)
+
+    bytes = ''.join(bytes)
+
+    out = header
+    length = len(header)
+
+    fchunk = False
+    for chunk in re.split('{%|%}',bytes):
+        if fchunk:
+            chunk = chunk.strip()
+            if chunk in dyn_exprs:
+                index = dyn_exprs[chunk]
+            else:
+                index = dyn_expr_count
+                dyn_exprs[chunk] = index
+                dyn_expr_count += 1
+            out += ''.join([chr(255), chr(index)])
+            length += 2
+        else:
+            out += chunk
+            length += len(chunk)
+
+        fchunk = not fchunk
+
+    return (length, out)
+
+
+
+
+def traverse(root, next_ptr = 'NULL',name = ''):
+    global binfile, binindex
+    fs = os.listdir(root)
+    subdirs = [ f for f in fs if os.path.isdir(os.path.join(root,f)) ]
+    fs = [ f for f in fs if not os.path.isdir(os.path.join(root,f)) ]
+
+    sym = get_id(root,None)
+    decl = 'fs_dir_t %s = {%s, %s, %s, %s};' % (sym,
+                                                next_ptr,
+                                                get_next_ptr(root,subdirs,-1),
+                                                get_next_ptr(root,fs,-1),
+                                                to_char_array(name))
+    decls.append(decl)
+
+    for i in range(len(fs)):
+        next_ptr = get_next_ptr(root,fs,i)
+        sym = get_id(root, fs[i])
+        name = fs[i]
+        (length, data) = process_file(os.path.join(root,fs[i]))
+
+        if is_flash_fs:
+            data_addr = '(simplefs_addr_t) %d' % binindex
+        else:
+            data_addr = '(simplefs_addr_t) &_data'+sym+'[0]'
+
+        print "Processing %s" % name
+        decl = 'fs_file_t %s = {%s,0,%d,%s,%s};' % (sym,
+                                                    next_ptr,
+                                                    length,
+                                                    data_addr,
+                                                    to_char_array(name))
+        decls.append(decl)
+
+        if is_flash_fs:
+            binfile.write(data)
+            binindex += length
+        else:
+            decl = 'char %s[] = %s;' % ('_data'+sym,
+                                        to_char_array(data,add_null=False))
+            decls.append(decl)
+
+
+    for i in range(len(subdirs)):
+        traverse(os.path.join(root,subdirs[i]),
+                 next_ptr = get_next_ptr(root,subdirs,i),
+                 name = subdirs[i])
+
+if __name__ == "__main__":
+    root = sys.argv[1]
+    cpath = sys.argv[2]
+    is_flash_fs = (sys.argv[3] == 'flash')
+    binpath = sys.argv[4]
+    hpath = sys.argv[5]
+
+    if is_flash_fs:
+        print "Generating web pages for flash"
+        print "*************************************"
+        print "YOU HAVE TO REFLASH THE DEVICE FOR THE PROGRAM TO WORK"
+        print "*************************************"
+    else:
+        print "Generating web pages in program image"
+
+    decls = []
+    dyn_exprs = {}
+    dyn_expr_count = 0;
+    if is_flash_fs:
+        binfile = open(binpath,"w")
+        binindex = 0
+    traverse(root)
+    if is_flash_fs:
+        binfile.close()
+    decls.reverse()
+    f = open(cpath,"w")
+    includes = ['simplefs.h','stdlib.h','web_server.h']
+    for inc in includes:
+        f.write('#include "%s"\n\n'%inc)
+
+    f.write('#ifdef __web_server_conf_h_exists__\n')
+    f.write('#include "web_server_conf.h"\n')
+    f.write('#endif\n\n')
+
+    for d in decls:
+        f.write(d+'\n\n')
+
+    f.write('int web_server_dyn_expr(int exp, char *buf, int app_state, int connection_state)\n{\n')
+    f.write('  switch (exp) {\n')
+    for expr, i in dyn_exprs.iteritems():
+        f.write('   case %d: return %s;\n' % (i, expr))
+    f.write('  }\n')
+    f.write('  return 0;\n')
+    f.write('}\n\n')
+    f.write('fs_dir_t *root = &%s;\n\n' % get_id(root))
+    f.close()
+
+    f = open(hpath,"w")
+    f.write('#ifndef __web_server_gen_h__\n')
+    f.write('#define __web_server_gen_h__\n')
+    f.write('#define WEB_SERVER_IMAGE_SIZE %d\n' % binindex)
+    f.write('#endif\n')
+    f.close()
