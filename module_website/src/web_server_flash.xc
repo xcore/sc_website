@@ -7,15 +7,6 @@
 #include "web_server_conf.h"
 #endif
 
-#ifndef WEB_SERVER_FLASH_DEVICES
-#define WEB_SERVER_FLASH_DEVICES flash_devices
-#endif
-
-#ifndef WEB_SERVER_NUM_FLASH_DEVICES
-#define WEB_SERVER_NUM_FLASH_DEVICES 1
-#endif
-
-extern fl_DeviceSpec WEB_SERVER_FLASH_DEVICES [];
 
 char web_server_flash_cache[WEB_SERVER_FLASH_CACHE_SIZE];
 
@@ -26,7 +17,7 @@ void web_server_flash_init(fl_SPIPorts &flash_ports)
 
 }
 
-
+#ifdef WEB_SERVER_USE_FLASH
 select web_server_flash(chanend c_flash,
                         fl_SPIPorts &flash_ports)
 {
@@ -47,3 +38,4 @@ select web_server_flash(chanend c_flash,
  }
  break;
 }
+#endif

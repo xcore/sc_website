@@ -1,6 +1,7 @@
 import sys
 import os
 import re
+import mimetypes
 
 def get_id(root, name=None):
     root = root.replace('/','_')
@@ -23,10 +24,23 @@ def to_char_array(s,add_null = True):
         chars.append('0')
     return '{' + ','.join(chars) + '}'
 
-header = "HTTP/1.0 200 OK\r\nServer: XMOS\r\nContent-type: text/html\r\n\r\n"
+
+header = "HTTP/1.0 200 OK\r\nServer: XMOS\r\nContent-type: %s\r\n\r\n"
+
+fs_type_template = 0
+fs_type_binary = 1
 
 def process_file(path):
     global dyn_exprs, dyn_expr_count, decls
+    (typ,_) = mimetypes.guess_type(path)
+    if not typ:
+        type = 'application/octet-stream'
+
+    if re.match('.*\.html',path):
+        fs_type = fs_type_template
+    else:
+        fs_type = fs_type_binary
+
     f = open(path,"rb")
     bytes = []
     while True:
@@ -37,28 +51,32 @@ def process_file(path):
 
     bytes = ''.join(bytes)
 
-    out = header
-    length = len(header)
+    out = header%typ
+    length = len(header%typ)
 
-    fchunk = False
-    for chunk in re.split('{%|%}',bytes):
-        if fchunk:
-            chunk = chunk.strip()
-            if chunk in dyn_exprs:
-                index = dyn_exprs[chunk]
+    if fs_type == fs_type_binary:
+        out += bytes
+        length += len(bytes)
+    else:
+        fchunk = False
+        for chunk in re.split('{%|%}',bytes):
+            if fchunk:
+                chunk = chunk.strip()
+                if chunk in dyn_exprs:
+                    index = dyn_exprs[chunk]
+                else:
+                    index = dyn_expr_count
+                    dyn_exprs[chunk] = index
+                    dyn_expr_count += 1
+                out += ''.join([chr(255), chr(index)])
+                length += 2
             else:
-                index = dyn_expr_count
-                dyn_exprs[chunk] = index
-                dyn_expr_count += 1
-            out += ''.join([chr(255), chr(index)])
-            length += 2
-        else:
-            out += chunk
-            length += len(chunk)
+                out += chunk
+                length += len(chunk)
 
-        fchunk = not fchunk
+            fchunk = not fchunk
 
-    return (length, out)
+    return (length, fs_type, out)
 
 
 
@@ -81,7 +99,7 @@ def traverse(root, next_ptr = 'NULL',name = ''):
         next_ptr = get_next_ptr(root,fs,i)
         sym = get_id(root, fs[i])
         name = fs[i]
-        (length, data) = process_file(os.path.join(root,fs[i]))
+        (length, fs_type, data) = process_file(os.path.join(root,fs[i]))
 
         if is_flash_fs:
             data_addr = '(simplefs_addr_t) %d' % binindex
@@ -89,11 +107,12 @@ def traverse(root, next_ptr = 'NULL',name = ''):
             data_addr = '(simplefs_addr_t) &_data'+sym+'[0]'
 
         print "Processing %s" % name
-        decl = 'fs_file_t %s = {%s,0,%d,%s,%s};' % (sym,
-                                                    next_ptr,
-                                                    length,
-                                                    data_addr,
-                                                    to_char_array(name))
+        decl = 'fs_file_t %s = {%s,%d,%d,%s,%s};' % (sym,
+                                                     next_ptr,
+                                                     fs_type,
+                                                     length,
+                                                     data_addr,
+                                                     to_char_array(name))
         decls.append(decl)
 
         if is_flash_fs:
@@ -128,9 +147,10 @@ if __name__ == "__main__":
     decls = []
     dyn_exprs = {}
     dyn_expr_count = 0;
+    binindex = 0
     if is_flash_fs:
         binfile = open(binpath,"w")
-        binindex = 0
+
     traverse(root)
     if is_flash_fs:
         binfile.close()

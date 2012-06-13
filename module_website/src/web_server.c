@@ -45,6 +45,7 @@ typedef enum {
 typedef struct connection_state_t {
   int active;
   int conn_id;
+  int is_template;
   char current_data[WEB_SERVER_SEND_BUF_SIZE];
   int  current_data_len;
   simplefs_addr_t next_data;
@@ -59,9 +60,9 @@ typedef struct connection_state_t {
 static connection_state_t connection_state[WEB_SERVER_NUM_CONNECTIONS];
 static int app_state = 0;
 
-void web_server_init(chanend c_xtcp, chanend c_flash)
+void web_server_init(chanend c_xtcp, chanend c_flash, fl_SPIPorts *fports)
 {
-  simplefs_init();
+  simplefs_init(fports);
   xtcp_listen(c_xtcp, WEB_SERVER_PORT, XTCP_PROTOCOL_TCP);
   for (int i=0;i<WEB_SERVER_NUM_CONNECTIONS;i++) {
     connection_state[i].active = 0;
@@ -131,9 +132,6 @@ static connection_state_t * get_new_state() {
   return NULL;
 }
 
-//static char response_404[] = "HTTP/1.0 404 OK\r\nServer: XMOS\r\nContent-type: text/html\r\n\r\n<html><body>404 Not Found</body></html>\r\n";
-
-
 
 static void get_resource(connection_state_t *st,
                          const char *uri)
@@ -145,9 +143,13 @@ static void get_resource(connection_state_t *st,
   else
     f = (fs_file_t *) simplefs_get_file(uri);
 
+  if (!f)
+    f = (fs_file_t *) simplefs_get_file("404.html");
+
   if (f) {
-      st->next_data = f->data;
-      st->end_of_data = f->data + f->length;
+    st->is_template = (f->ftype == FS_TYPE_TEMPLATE);
+    st->next_data = f->data;
+    st->end_of_data = f->data + f->length;
   }
   else {
     st->next_data = 0;
@@ -349,6 +351,14 @@ static void prepare_data(chanend c_flash, connection_state_t *st)
   char *src = src0;
   int len = 0;
 
+  if (!st->is_template) {
+    memcpy(dst, src, getlen);
+    st->current_data_len = getlen;
+    st->next_data += getlen;
+    return;
+  }
+
+
   int finished = 0;
   while (!finished) {
     switch (*src) {
@@ -410,9 +420,10 @@ void web_server_handle_event(chanend c_xtcp,
       {
       case XTCP_NEW_CONNECTION:
         st = get_new_state();
-        st->conn_id = conn->id;
-        if (st)
+        if (st) {
+          st->conn_id = conn->id;
           xtcp_set_connection_appstate(c_xtcp, conn, (unsigned) st);
+        }
         else
           xtcp_abort(c_xtcp, conn);
         break;
@@ -438,6 +449,9 @@ void web_server_handle_event(chanend c_xtcp,
                                       WEB_SERVER_SEND_BUF_SIZE)) {
             prepare_data(c_flash, st);
             xtcp_send(c_xtcp, st->current_data, st->current_data_len);
+            #ifdef WEB_SERVER_POST_RENDER_FUNCTION
+            WEB_SERVER_POST_RENDER_FUNCTION((int) app_state, (int) st);
+            #endif
             update_data_cache(c_flash);
           }
           else {

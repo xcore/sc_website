@@ -6,8 +6,16 @@
 #include "web_server_conf.h"
 #endif
 #include "web_server_gen.h"
+#include "flash.h"
 
-void web_server_init(chanend c_xtcp, NULLABLE_RESOURCE(chanend, c_flash));
+#ifndef WEB_SERVER_PORT
+#define WEB_SERVER_PORT 80
+#endif
+
+
+void web_server_init(chanend c_xtcp,
+                     NULLABLE_RESOURCE(chanend, c_flash),
+                     NULLABLE_REFERENCE_PARAM(fl_SPIPorts, flash_ports));
 
 void web_server_handle_event(chanend c_xtcp,
                              NULLABLE_RESOURCE(chanend, c_flash),

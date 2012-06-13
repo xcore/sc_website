@@ -1,10 +1,17 @@
 #ifndef _SIMPLEFS_H_
 #define _SIMPLEFS_H_
 #include <xccompat.h>
+#include "flash.h"
 #ifdef __web_server_conf_h_exists__
 #include "web_server_conf.h"
 #endif
 #include "mutual_thread_comm.h"
+
+typedef enum fstype_t {
+  FS_TYPE_TEMPLATE=0,
+  FS_TYPE_BINARY=1
+} fstype_t;
+
 
 typedef unsigned simplefs_addr_t;
 
@@ -40,7 +47,7 @@ char * simplefs_get_data(chanend c_flash, simplefs_addr_t addr, int len);
 int  simplefs_data_available(chanend c_flash, simplefs_addr_t addr, int len);
 void simplefs_request_data(chanend c_flash, simplefs_addr_t addr);
 int simplefs_request_pending();
-void simplefs_init();
+void simplefs_init(NULLABLE_REFERENCE_PARAM(fl_SPIPorts, flash_ports));
 
 #ifndef WEB_SERVER_FLASH_CACHE_SIZE
 #ifndef WEB_SERVER_SEND_BUF_SIZE
