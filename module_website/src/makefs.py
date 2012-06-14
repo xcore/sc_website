@@ -36,7 +36,7 @@ def process_file(path):
     if not typ:
         type = 'application/octet-stream'
 
-    if re.match('.*\.html',path):
+    if re.match('text/.*',typ):
         fs_type = fs_type_template
     else:
         fs_type = fs_type_binary
@@ -58,6 +58,10 @@ def process_file(path):
         out += bytes
         length += len(bytes)
     else:
+        # Make sure newlines are internet style CR-LF
+        bytes = bytes.replace('\r\n','\n')
+        bytes = bytes.replace('\n','\r\n')
+
         fchunk = False
         for chunk in re.split('{%|%}',bytes):
             if fchunk:
