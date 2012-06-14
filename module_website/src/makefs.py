@@ -25,10 +25,21 @@ def to_char_array(s,add_null = True):
     return '{' + ','.join(chars) + '}'
 
 
-header = "HTTP/1.0 200 OK\nServer: XMOS\nContent-type: %s\n\n"
+
+header = 'HTTP/1.0 200 OK\nServer: XMOS\nContent-type: %s\n\n'
 
 fs_type_template = 0
 fs_type_binary = 1
+
+crlf = str(chr(13)) + str(chr(10))
+lf = str(chr(10))
+cr = str(chr(13))
+
+def normalize_line_endings(s):
+    s = s.replace(crlf, lf)
+    s = s.replace(lf, crlf)
+    return s
+
 
 def process_file(path):
     global dyn_exprs, dyn_expr_count, decls
@@ -53,9 +64,7 @@ def process_file(path):
 
     hdr = header%typ
 
-    # Make sure newlines are internet style CR-LF
-    hdr = hdr.replace('\r\n','\n')
-    hdr = hdr.replace('\n','\r\n')
+    hdr = normalize_line_endings(hdr)
 
     out = hdr
     length = len(hdr)
@@ -64,9 +73,7 @@ def process_file(path):
         out += bytes
         length += len(bytes)
     else:
-        # Make sure newlines are internet style CR-LF
-        bytes = bytes.replace('\r\n','\n')
-        bytes = bytes.replace('\n','\r\n')
+        bytes = normalize_line_endings(bytes)
 
         fchunk = False
         for chunk in re.split('{%|%}',bytes):
