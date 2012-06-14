@@ -166,7 +166,7 @@ if __name__ == "__main__":
     dyn_expr_count = 0;
     binindex = 0
     if is_flash_fs:
-        binfile = open(binpath,"w")
+        binfile = open(binpath,"wb")
 
     traverse(root)
     if is_flash_fs:
