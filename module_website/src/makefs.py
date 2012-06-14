@@ -25,7 +25,7 @@ def to_char_array(s,add_null = True):
     return '{' + ','.join(chars) + '}'
 
 
-header = "HTTP/1.0 200 OK\r\nServer: XMOS\r\nContent-type: %s\r\n\r\n"
+header = "HTTP/1.0 200 OK\nServer: XMOS\nContent-type: %s\n\n"
 
 fs_type_template = 0
 fs_type_binary = 1
@@ -51,8 +51,14 @@ def process_file(path):
 
     bytes = ''.join(bytes)
 
-    out = header%typ
-    length = len(header%typ)
+    hdr = header%typ
+
+    # Make sure newlines are internet style CR-LF
+    hdr = hdr.replace('\r\n','\n')
+    hdr = hdr.replace('\n','\r\n')
+
+    out = hdr
+    length = len(hdr)
 
     if fs_type == fs_type_binary:
         out += bytes
