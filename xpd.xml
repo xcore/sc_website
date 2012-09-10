@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<xpd>
+    <components>
+        <component description = "Software Block: app_website_demo_flash_thread" scope = "Experimental" path = "app_website_demo_flash_thread" type = "demoCode" id = "app_website_demo_flash_thread" name = "app_website_demo_flash_thread"></component>
+        <component description = "Software Block: module_website" scope = "Experimental" path = "module_website" type = "demoCode" id = "module_website" name = "module_website"></component>
+        <component description = "Software Block: app_website_demo" scope = "Experimental" path = "app_website_demo" type = "demoCode" id = "app_website_demo" name = "app_website_demo"></component>
+        <component description = "Software Block: app_website_demo_flash" scope = "Experimental" path = "app_website_demo_flash" type = "demoCode" id = "app_website_demo_flash" name = "app_website_demo_flash"></component>
+    </components>
+    <dependency repo = "sc_util">
+        <githash>0f573d6aebdbea08d2bedda1674b9e5f2add19ae</githash>
+        <uri>git@github.com:xcore/sc_util</uri>
+    </dependency>
+    <dependency repo = "sc_xtcp">
+        <githash>ef82383c82d9140cf74a5b7c737ca8d0bb1e393e</githash>
+        <uri>git@github.com:xcore/sc_xtcp</uri>
+    </dependency>
+    <dependency repo = "sc_ethernet">
+        <githash>0ab30f395c48e657d12f96659029661f6c5d8797</githash>
+        <uri>git@github.com:xcore/sc_ethernet</uri>
+    </dependency>
+    <description>Embedded website component repository</description>
+    <location>git@github.com:xcore/sc_website</location>
+    <name>sc_website</name>
+    <maintainer>davelxmos</maintainer>
+    <vendor>XMOS</vendor>
+    <xpd_version>1.0</xpd_version>
+</xpd>
