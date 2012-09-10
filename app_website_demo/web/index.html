@@ -1,0 +1,32 @@
+<html>
+<body>
+
+<h1>xSOFTip Website Component Example</h1>
+
+<p>This is a demo of the embedded website software component. This
+  component preprocesses website data and stores it in the program
+  memory or on an attached serial flash. You can include text and images:</p>
+
+<p><img src="images/xmos_logo.gif" /></p>
+
+<p>The file system of the web tree is reflected in the server:</p>
+
+<ul>
+<li><a href="page.html">Another page</a></li>
+<li><a href="dir1/page.html">A page in a sub-directory</a></li>
+</ul>
+
+<p>You can also include dynamic content like this timestamp from an XC
+  timer: {% get_timer_value(buf,1) %}
+</p>
+
+<p>The server can also understand html form data. Try entering some
+  text in the field below</p>
+
+<form name="form" action = "form.html" method="post">
+<input name='input' type='text'/>
+<input type="submit" Value="Go!"/>
+</form>
+
+</body>
+</html>
