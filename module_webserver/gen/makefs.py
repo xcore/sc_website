@@ -2,6 +2,7 @@ import sys
 import os
 import re
 import mimetypes
+import ConfigParser
 
 def get_id(root, name=None):
     root = root.replace('/','_')
@@ -104,6 +105,8 @@ def traverse(root, next_ptr = 'NULL',name = ''):
     subdirs = [ f for f in fs if os.path.isdir(os.path.join(root,f)) ]
     fs = [ f for f in fs if not os.path.isdir(os.path.join(root,f)) ]
 
+    fs = [f for f in fs if not re.match('.*webserver.conf',f)]
+
     sym = get_id(root,None)
     decl = 'fs_dir_t %s = {%s, %s, %s, %s};' % (sym,
                                                 next_ptr,
@@ -149,9 +152,19 @@ def traverse(root, next_ptr = 'NULL',name = ''):
 if __name__ == "__main__":
     root = sys.argv[1]
     cpath = sys.argv[2]
-    is_flash_fs = (sys.argv[3] == 'flash')
-    binpath = sys.argv[4]
-    hpath = sys.argv[5]
+    binpath = sys.argv[3]
+    hpath = sys.argv[4]
+
+    is_flash_fs = False
+    if os.path.exists(os.path.join(root,'webserver.conf')):
+        print "Found webserver.conf"
+        config = ConfigParser.ConfigParser()
+        config.read(os.path.join(root,'webserver.conf'))
+        try:
+            if config.get('Webserver','use_flash') in ('true','True'):
+                is_flash_fs = True
+        except:
+            pass
 
     if is_flash_fs:
         print "Generating web pages for flash"

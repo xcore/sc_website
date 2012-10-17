@@ -58,7 +58,7 @@ void simplefs_init(NULLABLE_REFERENCE_PARAM(fl_SPIPorts, flash_ports));
 #endif
 
 typedef struct simplefs_state_t {
-  char local_cache[WEB_SERVER_FLASH_CACHE_SIZE];
+  char local_cache[WEB_SERVER_FLASH_CACHE_SIZE+1];
   simplefs_addr_t cached_addr;
   simplefs_addr_t request_addr;
   mutual_comm_state_t mstate;

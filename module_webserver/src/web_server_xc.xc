@@ -1,3 +1,4 @@
+#include <xs1.h>
 #include "web_server.h"
 #include "simplefs.h"
 

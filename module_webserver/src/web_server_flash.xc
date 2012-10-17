@@ -1,3 +1,4 @@
+#include <xs1.h>
 #include <flash.h>
 #include <print.h>
 #include "web_server_flash.h"

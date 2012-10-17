@@ -1,5 +1,5 @@
-Embedded Website Library
-========================
+Embedded Webserver Library
+==========================
 
 :scope: General Use
 :description: A library for adding an embedded website to your code

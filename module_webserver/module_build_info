@@ -1,0 +1,15 @@
+DEPENDENT_MODULES = module_xtcp module_mutual_thread_comm
+
+MODULE_XCC_C_FLAGS = $(XCC_FLAGS) -Os
+
+OPTIONAL_HEADERS += web_server_conf.h
+
+GENERATED_FILES = web_files.c web_server_gen.h
+
+WEB_FILES = $(foreach x,$(call GET_ALL_SUBDIRS,$(WEB_ROOT_DIR)),$(call WILDCARD,$x/*))
+
+WEB_ROOT_DIR  ?= web
+
+$(GEN_DIR)/web_files.c $(GEN_DIR)/web_server_gen.h: $(WEB_FILES) $(CURRENT_MODULE_DIR)/gen/makefs.py
+	@echo "Generating file system for web site"
+	@$(call JYTHON, $(CURRENT_MODULE_DIR)/gen/makefs.py $(WEB_ROOT_DIR) $(GEN_DIR)/web_files.c $(BIN_DIR)/web_data.bin $(GEN_DIR)/web_server_gen.h)

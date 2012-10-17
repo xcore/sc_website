@@ -8,20 +8,20 @@ simplefs_state_t simplefs_state;
 
 extern fs_dir_t *root;
 
-#if defined(WEB_SERVER_USE_FLASH) && !defined(WEB_SERVER_FLASH_THREAD)
+#if WEB_SERVER_USE_FLASH && !WEB_SERVER_FLASH_THREAD
 static fl_SPIPorts *flash_ports;
 #endif
 
 void simplefs_init(fl_SPIPorts *fports)
 {
-#ifndef WEB_SERVER_USE_FLASH
+#if !WEB_SERVER_USE_FLASH
   return;
 #else
   simplefs_state_t *st = &simplefs_state;
   st->cached_addr = -1;
   st->request_addr = -1;
 
-#ifdef WEB_SERVER_FLASH_THREAD
+#if WEB_SERVER_FLASH_THREAD
   mutual_comm_init_state(&st->mstate);
 #else
   flash_ports = fports;
@@ -30,7 +30,7 @@ void simplefs_init(fl_SPIPorts *fports)
 #endif
 }
 
-#ifdef WEB_SERVER_USE_FLASH
+#if WEB_SERVER_USE_FLASH
 static int data_in_cache(simplefs_addr_t addr, int len)
 {
   simplefs_state_t *st = &simplefs_state;
@@ -41,12 +41,12 @@ static int data_in_cache(simplefs_addr_t addr, int len)
 
 char * simplefs_get_data(chanend c_flash, simplefs_addr_t addr, int len)
 {
-#ifndef WEB_SERVER_USE_FLASH
+#if !WEB_SERVER_USE_FLASH
   return (char *) addr;
 #else
   simplefs_state_t *st = &simplefs_state;
 
-#ifdef WEB_SERVER_FLASH_THREAD
+#if WEB_SERVER_FLASH_THREAD
   return &st->local_cache[addr - st->cached_addr];
 #else
   if (!data_in_cache(addr, len)) {
@@ -54,7 +54,9 @@ char * simplefs_get_data(chanend c_flash, simplefs_addr_t addr, int len)
                       WEB_SERVER_FLASH_DEVICES,
                       WEB_SERVER_NUM_FLASH_DEVICES);
    fl_readData(addr, WEB_SERVER_FLASH_CACHE_SIZE,
-               st->local_cache);
+               (unsigned char *) st->local_cache);
+   st->local_cache[WEB_SERVER_FLASH_CACHE_SIZE] = 0;
+   st->cached_addr = addr;
    fl_disconnect();
   }
 
@@ -66,7 +68,7 @@ char * simplefs_get_data(chanend c_flash, simplefs_addr_t addr, int len)
 
 int simplefs_request_pending()
 {
-#if !defined(WEB_SERVER_USE_FLASH) || !defined(WEB_SERVER_FLASH_THREAD)
+#if !WEB_SERVER_USE_FLASH || !WEB_SERVER_FLASH_THREAD
   return 0;
 #else
   simplefs_state_t *st = &simplefs_state;
@@ -76,7 +78,7 @@ int simplefs_request_pending()
 
 int simplefs_data_available(chanend c_flash, simplefs_addr_t addr, int len)
 {
-#if !defined(WEB_SERVER_USE_FLASH) || !defined(WEB_SERVER_FLASH_THREAD)
+#if !WEB_SERVER_USE_FLASH || !WEB_SERVER_FLASH_THREAD
   return 1;
 #else
   return data_in_cache(addr, len);
@@ -85,7 +87,7 @@ int simplefs_data_available(chanend c_flash, simplefs_addr_t addr, int len)
 
 void simplefs_request_data(chanend c_flash, simplefs_addr_t addr)
 {
-#if !defined(WEB_SERVER_USE_FLASH) || !defined(WEB_SERVER_FLASH_THREAD)
+#if !WEB_SERVER_USE_FLASH || !WEB_SERVER_FLASH_THREAD
   return;
 #else
   simplefs_state_t *st = &simplefs_state;
