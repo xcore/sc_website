@@ -1,0 +1,175 @@
+-- -*- mode: lua -*-
+
+configPoints = {
+   use_flash = {
+      short = "Use SPI Flash",
+      long = "Use SPI Flash to store the web page data",
+      help = [[
+The webserver library can either store pages in program memory or on an attached SPI flash.
+              ]],
+      type = "bool",
+      default = false,
+      define = "WEB_SERVER_USE_FLASH";
+   },
+   use_separate_flash_task = {
+      short = "Use separate SPI Flash task",
+      long = "Use a separate task to access SPI Flasha",
+      help = [[
+The webserver library can either store pages in program memory or on an attached SPI flash.
+              ]],
+      type = "bool",
+      default = false,
+      define = "WEB_SERVER_USE_SEPARATE_FLASH_TASK";
+   },
+}
+
+derivedValues = {}
+
+function getConfigStatus()
+         return "Trusted", {};
+end
+
+ports = {}
+
+channels = {}
+
+
+
+if swblock.params.use_flash then
+   includes = {"web_server.h","web_server_flash.h","flash.h"}
+   flash_globals = [[
+
+   // Edit this structure to tell the web server which flash devices to use
+   // (and edit the defines in web_server_conf.h)
+   fl_DeviceSpec flash_devices[] =
+   {
+     FL_DEVICE_NUMONYX_M25P16,
+   };
+
+                   ]]
+else
+   includes = {"web_server.h"}
+   flash_globals = ""
+end
+
+if swblock.params.use_flash then
+   if swblock.params.use_separate_flash_task then
+   demo_tasks = [[
+      // Use these functions to implement a web server or integrate into
+      // you own code
+      void tcp_handler(chanend c_xtcp, chanend c_flash) {
+       xtcp_connection_t conn;
+       web_server_init(c_xtcp, c_flash, null);
+        // Initialize your other code here
+       while (1) {
+         select
+           {
+           case xtcp_event(c_xtcp, conn):
+              // handle other kinds of tcp traffic here
+             web_server_handle_event(c_xtcp, c_flash, null, conn);
+             break;
+           case web_server_flash_response(c_flash):
+             web_server_flash_handler(c_flash, c_xtcp);
+             break;
+            // handle other events in your system here
+           }
+       }
+    }
+
+    void flash_handler(chanend c_flash, fl_SPIPorts &flash_ports) {
+      web_server_flash_init(flash_ports);
+      // Initialize your application code here
+      while (1) {
+        select {
+        case web_server_flash(c_flash, flash_ports);
+        // handle over application events here
+        }
+      }
+    }
+
+
+                 ]]
+
+
+   else
+      demo_tasks = [[
+      // Use this function to implement a web server or integrate into
+      // you own code
+      void example_tcp_handler(chanend c_xtcp, fl_SPIPorts &flash_ports) {
+        xtcp_connection_t conn;
+        web_server_init(c_xtcp, null, flash_ports);
+        // Initialize your other code here
+        while (1) {
+          select
+            {
+            case xtcp_event(c_xtcp, conn):
+              // handle other kinds of tcp traffic here
+              web_server_handle_event(c_xtcp, null, flash_ports, conn);
+              break;
+            // handle other events in your system here
+            }
+        }
+     }
+                    ]]
+   end
+else
+   demo_tasks = [[
+      // Use this function to implement a web server or integrate into
+      // you own code
+   void example_tcp_handler(chanend c_xtcp) {
+     xtcp_connection_t conn;
+     web_server_init(c_xtcp, null, null);
+
+     // Initialize your other code here
+
+     while (1) {
+       select
+         {
+         case xtcp_event(c_xtcp,conn):
+
+           // handle other kinds of tcp traffic here
+
+           web_server_handle_event(c_xtcp, null, null, conn);
+           break;
+
+         // handle other events in your system here
+         }
+     }
+   }
+
+                ]]
+end
+
+
+generatedCode = {
+   includes = includes,
+   globals  = flash_globals .. demo_tasks,
+   body = ""
+}
+
+
+
+if not swblock.params.use_separate_flash_task or not swblock.params.use_flash then
+   api = {'web_server_init',
+          'web_server_handle_event'}
+else
+   api = {'web_server_init',
+          'web_server_handle_event',
+          'web_server_flash_response',
+          'web_server_flash_handler',
+          'web_server_flash_init',
+          'web_server_flash'
+   }
+end
+
+files = {["module_webserver/web_server_conf_example.h"] = "src/web_server_conf.h",
+         ["module_webserver/.example_web/index.html"] = "web/index.html"}
+
+if swblock.params.use_flash then
+   files["module_webserver/.example_web/webserver.conf"] = "web/webserver.conf"
+end
+
+
+
+
+

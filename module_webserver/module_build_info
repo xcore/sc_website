@@ -12,4 +12,8 @@ WEB_ROOT_DIR  ?= web
 
 $(GEN_DIR)/web_files.c $(GEN_DIR)/web_server_gen.h: $(WEB_FILES) $(CURRENT_MODULE_DIR)/gen/makefs.py
 	@echo "Generating file system for web site"
-	@$(call JYTHON, $(CURRENT_MODULE_DIR)/gen/makefs.py $(WEB_ROOT_DIR) $(GEN_DIR)/web_files.c $(BIN_DIR)/web_data.bin $(GEN_DIR)/web_server_gen.h)
+	@xta --console-basic source $(CURRENT_MODULE_DIR)/gen/makefs.py $(WEB_ROOT_DIR) $(GEN_DIR)/web_files.c $(BIN_DIR)/web_data.bin $(GEN_DIR)/web_server_gen.h -exit
+
+ifeq ($(strip $(filter -lflash,$(XCC_FLAGS) $(XCC_MAP_FLAGS))),)
+XCC_MAP_FLAGS += -lflash
+endif

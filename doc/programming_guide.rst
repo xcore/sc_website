@@ -241,7 +241,7 @@ which will then progress the TCP transaction.
 
 The task handling the flash should look something like this::
 
-    void flash_handler(chanend c_flash) {
+    void flash_handler(chanend c_flash, fl_SPIPorts &flash_ports) {
       web_server_flash_init(flash_ports);
       // Initialize your application code here
       while (1) {

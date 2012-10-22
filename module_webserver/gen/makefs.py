@@ -101,7 +101,11 @@ def process_file(path):
 
 def traverse(root, next_ptr = 'NULL',name = ''):
     global binfile, binindex
-    fs = os.listdir(root)
+    if os.path.exists(root) and os.path.isdir(root):
+        fs = os.listdir(root)
+    else:
+        fs = []
+
     subdirs = [ f for f in fs if os.path.isdir(os.path.join(root,f)) ]
     fs = [ f for f in fs if not os.path.isdir(os.path.join(root,f)) ]
 
