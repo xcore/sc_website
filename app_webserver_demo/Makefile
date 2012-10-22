@@ -9,7 +9,6 @@ TARGET = SLICEKIT-L2
 APP_NAME =
 
 # The USED_MODULES variable lists other module used by the application.
-#USED_MODULES = module_xtcp module_mii_singlethread module_ethernet_smi module_mutual_thread_comm  module_website
 
 USED_MODULES = module_webserver module_ethernet_board_support
 

@@ -4,10 +4,6 @@
 #include "web_server_flash.h"
 #include "mutual_thread_comm.h"
 #include "simplefs.h"
-#ifdef __web_server_conf_h_exists__
-#include "web_server_conf.h"
-#endif
-
 
 char web_server_flash_cache[WEB_SERVER_FLASH_CACHE_SIZE];
 
@@ -18,7 +14,7 @@ void web_server_flash_init(fl_SPIPorts &flash_ports)
 
 }
 
-#ifdef WEB_SERVER_USE_FLASH
+#if WEB_SERVER_USE_FLASH
 select web_server_flash(chanend c_flash,
                         fl_SPIPorts &flash_ports)
 {

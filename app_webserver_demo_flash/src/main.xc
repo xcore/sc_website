@@ -69,8 +69,8 @@ void tcp_handler(chanend c_xtcp, chanend ?c_flash, fl_SPIPorts &?flash_ports) {
         web_server_handle_event(c_xtcp, c_flash, flash_ports, conn);
         break;
 #if SEPARATE_FLASH_TASK
-      case web_server_cache_request(c_flash):
-        web_server_cache_handler(c_flash, c_xtcp);
+      case web_server_flash_response(c_flash):
+        web_server_flash_handler(c_flash, c_xtcp);
         break;
 #endif
       }

@@ -1,5 +1,5 @@
-Web Server Demo
-===============
+Embedded Webserver Demo (No SPI Flash)
+======================================
 
 :scope: Example
 :description: A simple demo of the embedded website component

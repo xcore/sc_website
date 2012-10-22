@@ -1,9 +1,5 @@
-Embedded Webserver Function Library
-===================================
-
-:scope: General Use
-:description: A library for adding an embedded website to your code
-:keywords: ethernet, http, tcp, ip, webserver
+Embedded Webserver Library Programming Guide
+============================================
 
 This software block allows you to generate a webserver that
 communicates using the XMOS TCP/IP server component. It has the
@@ -21,3 +17,8 @@ following core features:
    integrate the webserver in other applications that already handle
    TCP or access flash.
 
+.. toctree::
+
+   getting_started
+   programming_guide
+   api

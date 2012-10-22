@@ -1,9 +1,9 @@
-<Add title here>
-================
+Embedded Webserver Demo (SPI Flash)
+======================================
 
-:scope: <Put one of Roadmap, Experimental, Early Development or General Use>
-:description: <Add one line here>
-:keywords: <Add comma separated list of keywords>
-:boards: <Add comma separated list of supported boards>
+:scope: Example
+:description: A simple demo of the embedded website component
+:keywords: ethernet, http, tcp, ip, webserver
 
-<Add description of software block>
+This is a simple demonstration of the emebedded wesbite component.
+It uses the mode of the component where the website is stored on SPI flash.

@@ -1,27 +1,58 @@
 <?xml version="1.0" ?>
 <xpd>
     <components>
-        <component description = "Software Block: app_website_demo_flash_thread" scope = "Experimental" path = "app_website_demo_flash_thread" type = "demoCode" id = "app_website_demo_flash_thread" name = "app_website_demo_flash_thread"></component>
-        <component description = "Software Block: module_website" scope = "Experimental" path = "module_website" type = "demoCode" id = "module_website" name = "module_website"></component>
-        <component description = "Software Block: app_website_demo" scope = "Experimental" path = "app_website_demo" type = "demoCode" id = "app_website_demo" name = "app_website_demo"></component>
-        <component description = "Software Block: app_website_demo_flash" scope = "Experimental" path = "app_website_demo_flash" type = "demoCode" id = "app_website_demo_flash" name = "app_website_demo_flash"></component>
+        <component description = "A simple demo of the embedded website component" type = "demoCode" scope = "Example" path = "app_webserver_demo_flash" local = "false" id = "app_webserver_demo_flash" name = "Embedded Webserver Demo (SPI Flash)">
+            <componentDependency>module_webserver</componentDependency>
+            <componentDependency>module_otp_board_info</componentDependency>
+            <componentDependency>module_locks</componentDependency>
+            <componentDependency>module_slicekit_support</componentDependency>
+            <componentDependency>module_xtcp</componentDependency>
+            <componentDependency>module_ethernet_board_support</componentDependency>
+            <componentDependency>module_mutual_thread_comm</componentDependency>
+            <componentDependency>module_ethernet_smi</componentDependency>
+            <componentDependency>module_ethernet</componentDependency>
+            <keyword>ethernet</keyword>
+            <keyword>http</keyword>
+            <keyword>tcp</keyword>
+            <keyword>ip</keyword>
+            <keyword>webserver</keyword>
+        </component>
+        <component description = "A simple demo of the embedded website component" type = "demoCode" scope = "Example" path = "app_webserver_demo" local = "false" id = "app_webserver_demo" name = "Embedded Webserver Demo (No SPI Flash)">
+            <componentDependency>module_webserver</componentDependency>
+            <componentDependency>module_otp_board_info</componentDependency>
+            <componentDependency>module_locks</componentDependency>
+            <componentDependency>module_xtcp</componentDependency>
+            <componentDependency>module_ethernet_board_support</componentDependency>
+            <componentDependency>module_mutual_thread_comm</componentDependency>
+            <componentDependency>module_ethernet_smi</componentDependency>
+            <componentDependency>module_ethernet</componentDependency>
+            <keyword>ethernet</keyword>
+            <keyword>http</keyword>
+            <keyword>tcp</keyword>
+            <keyword>ip</keyword>
+            <keyword>webserver</keyword>
+        </component>
     </components>
     <dependency repo = "sc_util">
-        <githash>0f573d6aebdbea08d2bedda1674b9e5f2add19ae</githash>
+        <githash>3f82b846395c07e8dd32ad9951afc209b6ed7efc</githash>
         <uri>git@github.com:xcore/sc_util</uri>
     </dependency>
     <dependency repo = "sc_xtcp">
-        <githash>ef82383c82d9140cf74a5b7c737ca8d0bb1e393e</githash>
+        <githash>6d4caf30161924bee1ecab698a6e4b204d8d9f73</githash>
         <uri>git@github.com:xcore/sc_xtcp</uri>
+        <version>3.1.1rc2</version>
     </dependency>
     <dependency repo = "sc_ethernet">
-        <githash>0ab30f395c48e657d12f96659029661f6c5d8797</githash>
+        <githash>95e20abf6ed73901f13cdd883a164dc1a7370eed</githash>
         <uri>git@github.com:xcore/sc_ethernet</uri>
+        <version>2.2.1rc1</version>
     </dependency>
     <description>Embedded website component repository</description>
+    <docdir>doc</docdir>
     <location>git@github.com:xcore/sc_website</location>
     <name>sc_website</name>
     <maintainer>davelxmos</maintainer>
     <vendor>XMOS</vendor>
+    <xcore_repo>sc_website</xcore_repo>
     <xpd_version>1.0</xpd_version>
 </xpd>

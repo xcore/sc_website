@@ -8,7 +8,7 @@ simplefs_state_t simplefs_state;
 
 extern fs_dir_t *root;
 
-#if WEB_SERVER_USE_FLASH && !WEB_SERVER_FLASH_THREAD
+#if WEB_SERVER_USE_FLASH && !WEB_SERVER_SEPARATE_FLASH_TASK
 static fl_SPIPorts *flash_ports;
 #endif
 
@@ -21,7 +21,7 @@ void simplefs_init(fl_SPIPorts *fports)
   st->cached_addr = -1;
   st->request_addr = -1;
 
-#if WEB_SERVER_FLASH_THREAD
+#if WEB_SERVER_SEPARATE_FLASH_TASK
   mutual_comm_init_state(&st->mstate);
 #else
   flash_ports = fports;
@@ -46,7 +46,7 @@ char * simplefs_get_data(chanend c_flash, simplefs_addr_t addr, int len)
 #else
   simplefs_state_t *st = &simplefs_state;
 
-#if WEB_SERVER_FLASH_THREAD
+#if WEB_SERVER_SEPARATE_FLASH_TASK
   return &st->local_cache[addr - st->cached_addr];
 #else
   if (!data_in_cache(addr, len)) {
@@ -68,7 +68,7 @@ char * simplefs_get_data(chanend c_flash, simplefs_addr_t addr, int len)
 
 int simplefs_request_pending()
 {
-#if !WEB_SERVER_USE_FLASH || !WEB_SERVER_FLASH_THREAD
+#if !WEB_SERVER_USE_FLASH || !WEB_SERVER_SEPARATE_FLASH_TASK
   return 0;
 #else
   simplefs_state_t *st = &simplefs_state;
@@ -78,7 +78,7 @@ int simplefs_request_pending()
 
 int simplefs_data_available(chanend c_flash, simplefs_addr_t addr, int len)
 {
-#if !WEB_SERVER_USE_FLASH || !WEB_SERVER_FLASH_THREAD
+#if !WEB_SERVER_USE_FLASH || !WEB_SERVER_SEPARATE_FLASH_TASK
   return 1;
 #else
   return data_in_cache(addr, len);
@@ -87,7 +87,7 @@ int simplefs_data_available(chanend c_flash, simplefs_addr_t addr, int len)
 
 void simplefs_request_data(chanend c_flash, simplefs_addr_t addr)
 {
-#if !WEB_SERVER_USE_FLASH || !WEB_SERVER_FLASH_THREAD
+#if !WEB_SERVER_USE_FLASH || !WEB_SERVER_SEPARATE_FLASH_TASK
   return;
 #else
   simplefs_state_t *st = &simplefs_state;

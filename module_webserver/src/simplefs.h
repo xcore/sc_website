@@ -2,9 +2,7 @@
 #define _SIMPLEFS_H_
 #include <xccompat.h>
 #include "flash.h"
-#ifdef __web_server_conf_h_exists__
-#include "web_server_conf.h"
-#endif
+#include "web_server_flash.h"
 #include "mutual_thread_comm.h"
 
 typedef enum fstype_t {
