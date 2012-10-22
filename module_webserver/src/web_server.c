@@ -2,6 +2,7 @@
 #include "web_server.h"
 #include "simplefs.h"
 #include "print.h"
+#include "flash.h"
 
 #ifdef __web_server_conf_h_exists__
 #include "web_server_conf.h"
@@ -55,6 +56,7 @@ typedef struct connection_state_t {
   int sending_paused;
   parsing_state_t parsing_state;
   request_method_t request_method;
+  file_handle_t file;
 } connection_state_t;
 
 static connection_state_t connection_state[WEB_SERVER_NUM_CONNECTIONS];
@@ -84,6 +86,16 @@ int web_server_is_post(int st0)
 {
   connection_state_t *st = (connection_state_t *) st0;
   return (st->request_method == REQUEST_POST);
+}
+
+int web_server_end_of_page(int st0) {
+  connection_state_t *st = (connection_state_t *) st0;
+  return (st->next_data >= st->end_of_data);
+}
+
+file_handle_t web_server_get_current_file(int st0) {
+  connection_state_t *st = (connection_state_t *) st0;
+  return (st->file);
 }
 
 char * web_server_get_param(const char *param,
@@ -118,6 +130,8 @@ int web_server_copy_param(const char param[], int st, char buf[])
   return 0;
 }
 
+
+
 static connection_state_t * get_new_state() {
   for (int i=0;i<WEB_SERVER_NUM_CONNECTIONS;i++) {
     if (!connection_state[i].active) {
@@ -150,10 +164,12 @@ static void get_resource(connection_state_t *st,
     st->is_template = (f->ftype == FS_TYPE_TEMPLATE);
     st->next_data = f->data;
     st->end_of_data = f->data + f->length;
+    st->file = (file_handle_t) f;
   }
   else {
     st->next_data = 0;
     st->end_of_data = 0;
+    st->file = 0;
   }
 
 }
@@ -401,6 +417,7 @@ static void prepare_data(chanend c_flash, connection_state_t *st)
 
 void web_server_handle_event(chanend c_xtcp,
                              chanend c_flash,
+                             fl_SPIPorts *flash_ports,
                              xtcp_connection_t *conn)
 {
   char inbuf[XTCP_MAX_RECEIVE_SIZE];

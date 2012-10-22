@@ -12,6 +12,7 @@
 #include "xtcp.h"
 #include "web_server.h"
 #include "web_server_flash.h"
+#include "web_page_functions.h"
 #include "ethernet_board_support.h"
 #include "itoa.h"
 
@@ -57,20 +58,15 @@ int get_timer_value(char buf[], int x)
   return len;
 }
 
-void tcp_handler(chanend c_xtcp, chanend ?c_flash) {
+void tcp_handler(chanend c_xtcp, chanend ?c_flash, fl_SPIPorts &?flash_ports) {
   xtcp_connection_t conn;
-  web_server_init(c_xtcp, c_flash,
-                  #if SEPARATE_FLASH_TASK
-                  null
-                  #else
-                  flash_ports
-                  #endif
-                  );
+  web_server_init(c_xtcp, c_flash, flash_ports);
+  init_web_state();
   while (1) {
     select
       {
       case xtcp_event(c_xtcp, conn):
-        web_server_handle_event(c_xtcp, c_flash, conn);
+        web_server_handle_event(c_xtcp, c_flash, flash_ports, conn);
         break;
 #if SEPARATE_FLASH_TASK
       case web_server_cache_request(c_flash):
@@ -96,7 +92,7 @@ void flash_handler(chanend c_flash) {
 // Program entry point
 int main(void) {
 	chan c_xtcp[1];
-        #if SEPARATE_FLASH_TASK
+         #if SEPARATE_FLASH_TASK
         chan c_flash;
         #endif
 
@@ -114,9 +110,11 @@ int main(void) {
           on tile[0]: {
             tcp_handler(c_xtcp[0],
 #if SEPARATE_FLASH_TASK
-                        c_flash
-#else
+                        c_flash,
                         null
+#else
+                        null,
+                        flash_ports
 #endif
                         );
           }

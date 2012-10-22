@@ -8,4 +8,4 @@
 #define WEB_SERVER_FLASH_THREAD 1
 #endif
 
-extern int get_timer_value(char buf[], int);
+#include "web_page_functions.h"

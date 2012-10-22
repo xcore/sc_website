@@ -20,6 +20,12 @@
   timer: {% get_timer_value(buf,1) %}
 </p>
 
+<p>
+  The functions called during rendering can also include state. For
+  example, here is a page load counter for this page: {% get_counter_value(app_state,buf) %}
+</p>
+
+
 <p>The server can also understand html form data. Try entering some
   text in the field below</p>
 

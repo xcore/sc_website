@@ -45,11 +45,12 @@ int get_timer_value(char buf[], int x)
 void tcp_handler(chanend c_xtcp) {
   xtcp_connection_t conn;
   web_server_init(c_xtcp, null, null);
+  init_web_state();
   while (1) {
     select
       {
       case xtcp_event(c_xtcp,conn):
-        web_server_handle_event(c_xtcp, null, conn);
+        web_server_handle_event(c_xtcp, null, null, conn);
         break;
       }
   }

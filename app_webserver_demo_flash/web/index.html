@@ -1,10 +1,11 @@
 <html>
 <body>
 
-<h1>Website module example</h1>
+<h1>xSOFTip Website Component Example</h1>
 
-<p>This is a demo of the embedded website module. You can include text and
-images:</p>
+<p>This is a demo of the embedded website software component. This
+  component preprocesses website data and stores it in the program
+  memory or on an attached serial flash. You can include text and images:</p>
 
 <p><img src="images/xmos_logo.png" /></p>
 
@@ -19,6 +20,12 @@ images:</p>
   timer: {% get_timer_value(buf,1) %}
 </p>
 
+<p>
+  The functions called during rendering can also include state. For
+  example, here is a page load counter for this page: {% get_counter_value(app_state,buf) %}
+</p>
+
+
 <p>The server can also understand html form data. Try entering some
   text in the field below</p>
 
@@ -26,9 +33,6 @@ images:</p>
 <input name='input' type='text'/>
 <input type="submit" Value="Go!"/>
 </form>
-
-<p>These web pages are stores in a connected SPI flash device and
-  loaded on demand.</p>
 
 </body>
 </html>
