@@ -1,13 +1,13 @@
 Embedded Website Component
 ..........................
 
-:Status:  draft
+:Latest release: 1.0.0alpha0
+:Maintainer: davelxmos
+:Description: Embedded website component repository
 
-:Maintainer:  davelxmos
 
-:Description: This repository contains a component that builds a
+
 website that can be stored in flash.
-
 
 To Do
 =====
@@ -15,11 +15,11 @@ To Do
 * Add support for images/binary data
 * Add support for accessing flash from within the web server thread
 
+Required software (dependencies)
+================================
 
-Required Repositories
-================
-
-* sc_util git\@github.com:xcore/sc_util.git
-* sc_ethernet git\@github.com:xcore/sc_ethernet.git
-* sc_xtcp     git\@github.com:xcore/sc_xtcp.git
+  * sc_util (git@github.com:xcore/sc_util)
+  * sc_xtcp (git@github.com:xcore/sc_xtcp)
+  * sc_ethernet (git@github.com:xcore/sc_ethernet)
+  * sc_otp (git@github.com:xcore/sc_otp)
 

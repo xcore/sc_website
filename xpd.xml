@@ -70,6 +70,9 @@
     <location>git@github.com:xcore/sc_website</location>
     <name>sc_website</name>
     <maintainer>davelxmos</maintainer>
+    <partnumber>XM-002084-DH</partnumber>
+    <release parenthash = "851e6d472d18dee913de279ba8d364c082c35200" version = "1.0.0alpha0"></release>
+    <subpartnumber>XM-002085-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sc_website</xcore_repo>
     <xpd_version>1.0</xpd_version>
