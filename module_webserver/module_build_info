@@ -10,9 +10,9 @@ WEB_FILES = $(foreach x,$(call GET_ALL_SUBDIRS,$(WEB_ROOT_DIR)),$(call WILDCARD,
 
 WEB_ROOT_DIR  ?= web
 
-$(GEN_DIR)/web_files.c $(GEN_DIR)/web_server_gen.h: $(WEB_FILES) $(CURRENT_MODULE_DIR)/gen/makefs.py
+$(GEN_DIR)/web_files.c $(GEN_DIR)/web_server_gen.h: $(WEB_FILES)
 	@echo "Generating file system for web site"
-	@xta --console-basic source $(CURRENT_MODULE_DIR)/gen/makefs.py $(WEB_ROOT_DIR) $(GEN_DIR)/web_files.c $(BIN_DIR)/web_data.bin $(GEN_DIR)/web_server_gen.h -exit
+	@xta --console-basic source "$(call UNMANGLE_NO_ESCAPE,$(CURRENT_MODULE_DIR)/gen/makefs.py)" $(WEB_ROOT_DIR) $(GEN_DIR)/web_files.c $(BIN_DIR)/web_data.bin $(GEN_DIR)/web_server_gen.h -exit
 
 ifeq ($(strip $(filter -lflash,$(XCC_FLAGS) $(XCC_MAP_FLAGS))),)
 XCC_MAP_FLAGS += -lflash
