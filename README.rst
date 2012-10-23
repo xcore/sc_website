@@ -1,10 +1,9 @@
 Embedded Website Component
 ..........................
 
-:Latest release: 1.0.0alpha0
+:Latest release: 1.0.0alpha1
 :Maintainer: davelxmos
 :Description: Embedded website component repository
-
 
 
 website that can be stored in flash.

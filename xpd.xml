@@ -71,7 +71,8 @@
     <name>sc_website</name>
     <maintainer>davelxmos</maintainer>
     <partnumber>XM-002084-DH</partnumber>
-    <release parenthash = "851e6d472d18dee913de279ba8d364c082c35200" version = "1.0.0alpha0"></release>
+    <release parenthash = "851e6d472d18dee913de279ba8d364c082c35200" version = "1.0.0alpha0" githash = "3ef265019778ac8d1b60d1ab2bf5b1bfac8747c4"></release>
+    <release parenthash = "bf65176d1c87b206eed1171b95b83b5095b9b6a4" version = "1.0.0alpha1"></release>
     <subpartnumber>XM-002085-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sc_website</xcore_repo>
