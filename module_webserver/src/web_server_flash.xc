@@ -5,13 +5,19 @@
 #include "mutual_thread_comm.h"
 #include "simplefs.h"
 
+#ifndef WEB_SERVER_CHECK_FLASH_SIGNATURE
+#define WEB_SERVER_CHECK_FLASH_SIGNATURE 1
+#endif
+
 char web_server_flash_cache[WEB_SERVER_FLASH_CACHE_SIZE];
 
-
+void web_server_check_signature(fl_SPIPorts &flash_ports);
 
 void web_server_flash_init(fl_SPIPorts &flash_ports)
 {
-
+  #if WEB_SERVER_USE_FLASH && WEB_SERVER_SEPARATE_FLASH_TASK && WEB_SERVER_CHECK_FLASH_SIGNATURE
+  web_server_check_signature(flash_ports);
+  #endif
 }
 
 #if WEB_SERVER_USE_FLASH

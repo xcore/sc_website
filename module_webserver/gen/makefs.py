@@ -181,9 +181,14 @@ if __name__ == "__main__":
     decls = []
     dyn_exprs = {}
     dyn_expr_count = 0;
-    binindex = 0
+    binindex = 4
     if is_flash_fs:
         binfile = open(binpath,"wb")
+        #Add a signature at the beginning of the image
+        binfile.write(chr(0x7e))
+        binfile.write(chr(0x51))
+        binfile.write(chr(0xeb))
+        binfile.write(chr(0x03))
 
     traverse(root)
     if is_flash_fs:
@@ -200,6 +205,8 @@ if __name__ == "__main__":
 
     for d in decls:
         f.write(d+'\n\n')
+
+
 
     f.write('int web_server_dyn_expr(int exp, char *buf, int app_state, int connection_state)\n{\n')
     f.write('  switch (exp) {\n')

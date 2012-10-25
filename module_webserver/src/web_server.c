@@ -28,6 +28,10 @@
 #define WEB_SERVER_SEND_BUF_SIZE 128
 #endif
 
+#ifndef WEB_SERVER_CHECK_FLASH_SIGNATURE
+#define WEB_SERVER_CHECK_FLASH_SIGNATURE 1
+#endif
+
 typedef enum {
   PARSING_METHOD,
   PARSING_URI,
@@ -62,8 +66,26 @@ typedef struct connection_state_t {
 static connection_state_t connection_state[WEB_SERVER_NUM_CONNECTIONS];
 static int app_state = 0;
 
+#if WEB_SERVER_USE_FLASH
+void web_server_check_signature(fl_SPIPorts *flash_ports)
+{
+  int data[1];
+  fl_connectToDevice(flash_ports,
+                      WEB_SERVER_FLASH_DEVICES,
+                      WEB_SERVER_NUM_FLASH_DEVICES);
+  fl_readData(0, 4, (unsigned char *) data);
+  if (data[0] != 0x03eb517e) {
+    printstrln("ERROR: Web pages have not been programmed to flash\n");
+  }
+  fl_disconnect();
+}
+#endif
+
 void web_server_init(chanend c_xtcp, chanend c_flash, fl_SPIPorts *fports)
 {
+  #if WEB_SERVER_USE_FLASH && !WEB_SERVER_SEPARATE_FLASH_TASK && WEB_SERVER_CHECK_FLASH_SIGNATURE
+  web_server_check_signature(fports);
+  #endif
   simplefs_init(fports);
   xtcp_listen(c_xtcp, WEB_SERVER_PORT, XTCP_PROTOCOL_TCP);
   for (int i=0;i<WEB_SERVER_NUM_CONNECTIONS;i++) {
