@@ -318,15 +318,6 @@ static void parse_http_request(chanend c_xtcp,
         return;
       }
   }
-  // With the current version of module_xtcp cannot detect a single sided
-  // close from the other end, so we assume that the end of the packet is
-  // the end of the params
-  if (st->request_method == REQUEST_POST &&
-      st->parsing_state == PARSING_PARAMS) {
-    st->params[st->params_len] = 0;
-    xtcp_init_send(c_xtcp, conn);
-    st->parsing_state = PARSING_IDLE;
-  }
 }
 
 extern int web_server_dyn_expr(int exp,
@@ -470,6 +461,15 @@ void web_server_handle_event(chanend c_xtcp,
         int len = xtcp_recv(c_xtcp, inbuf);
         if (st)
           parse_http_request(c_xtcp, conn, st, inbuf, len);
+        }
+        break;
+      case XTCP_PUSH_DATA:
+        // The other side has set the TCP push data flag indicating it
+        // has sent us the complete request, so we can respond
+        if (st && st->parsing_state != PARSING_IDLE) {
+          st->params[st->params_len] = 0;
+          xtcp_init_send(c_xtcp, conn);
+          st->parsing_state = PARSING_IDLE;
         }
         break;
       case XTCP_REQUEST_DATA:
