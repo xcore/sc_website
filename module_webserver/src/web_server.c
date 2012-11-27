@@ -3,6 +3,7 @@
 #include "simplefs.h"
 #include "print.h"
 #include "flash.h"
+#include "stdlib.h"
 
 #ifdef __web_server_conf_h_exists__
 #include "web_server_conf.h"
@@ -57,6 +58,7 @@ typedef struct connection_state_t {
   simplefs_addr_t end_of_data;
   char params[WEB_SERVER_MAX_PARAMS_LENGTH+1];
   int params_len;
+  int content_len;
   int sending_paused;
   parsing_state_t parsing_state;
   request_method_t request_method;
@@ -161,6 +163,7 @@ static connection_state_t * get_new_state() {
       connection_state[i].parsing_state = PARSING_METHOD;
       connection_state[i].request_method = REQUEST_UNKNOWN;
       connection_state[i].params_len = 0;
+      connection_state[i].content_len = -1;
       connection_state[i].sending_paused = 0;
       return &connection_state[i];
     }
@@ -194,6 +197,17 @@ static void get_resource(connection_state_t *st,
     st->file = 0;
   }
 
+}
+
+static void set_content_length(connection_state_t *st)
+{
+  if (strncmp(st->current_data,"Content-Length",14)==0) {
+    char *end = st->current_data + st->current_data_len - 1;
+    char *p = skip_word(st->current_data, end)+1;
+    int len;
+    len = atoi(p);
+    st->content_len = len;
+  }
 }
 
 static void parse_http_request(chanend c_xtcp,
@@ -263,8 +277,12 @@ static void parse_http_request(chanend c_xtcp,
             }
             break;
           default:
+            // This code reuses the current_data array to store
+            // the header names
+            st->current_data[0] = *buf;
             buf++;
             st->parsing_state = PARSING_HEADER;
+            st->current_data_len = 1;
             break;
           }
         break;
@@ -275,9 +293,18 @@ static void parse_http_request(chanend c_xtcp,
             buf++;
           case 10:
             buf++;
+            st->current_data[st->current_data_len] = 0;
+            set_content_length(st);
             st->parsing_state = PARSING_HEADERS;
             break;
           default:
+            if (st->current_data_len < WEB_SERVER_SEND_BUF_SIZE-1) {
+              if (*buf==':')
+                st->current_data[st->current_data_len] = 0;
+              else
+                st->current_data[st->current_data_len] = *buf;
+              st->current_data_len++;
+            }
             buf++;
             break;
           }
@@ -311,12 +338,21 @@ static void parse_http_request(chanend c_xtcp,
             }
             break;
           }
+        if (st->content_len > 0) {
+          st->content_len--;
+        }
         buf++;
         break;
       case PARSING_IDLE:
         // Nothing to do
         return;
       }
+  }
+  if (st->parsing_state == PARSING_PARAMS &&
+      st->content_len == 0) {
+    st->params[st->params_len] = 0;
+    xtcp_init_send(c_xtcp, conn);
+    st->parsing_state = PARSING_IDLE;
   }
 }
 
@@ -461,15 +497,6 @@ void web_server_handle_event(chanend c_xtcp,
         int len = xtcp_recv(c_xtcp, inbuf);
         if (st)
           parse_http_request(c_xtcp, conn, st, inbuf, len);
-        }
-        break;
-      case XTCP_PUSH_DATA:
-        // The other side has set the TCP push data flag indicating it
-        // has sent us the complete request, so we can respond
-        if (st && st->parsing_state != PARSING_IDLE) {
-          st->params[st->params_len] = 0;
-          xtcp_init_send(c_xtcp, conn);
-          st->parsing_state = PARSING_IDLE;
         }
         break;
       case XTCP_REQUEST_DATA:
