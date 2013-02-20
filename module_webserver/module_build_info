@@ -1,4 +1,8 @@
+ifeq ($(WEBSERVER_USE_MODULE_WIFI),1)
+DEPENDENT_MODULES = module_wifi_tiwisl module_mutual_thread_comm
+else
 DEPENDENT_MODULES = module_xtcp module_mutual_thread_comm
+endif
 
 MODULE_XCC_C_FLAGS = $(XCC_FLAGS) -Os
 
