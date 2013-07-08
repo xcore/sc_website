@@ -53,18 +53,19 @@
         </component>
     </components>
     <dependency repo = "sc_util">
-        <githash>84c4a06e1d75e12fc0e607a4d60b434e69ed1a71</githash>
+        <githash>c86abe3668ca7ec0444854a2be0c2aa94fed4d85</githash>
         <uri>git@github.com:xcore/sc_util</uri>
+        <version>1.0.2rc0</version>
     </dependency>
     <dependency repo = "sc_xtcp">
-        <githash>33336c4194eef2c72d0828c7aacc51caa46f9d76</githash>
+        <githash>fcc26ffd1d8e27ba7742ea089f846dcb102728a6</githash>
         <uri>git@github.com:xcore/sc_xtcp</uri>
-        <version>3.1.2rc0</version>
+        <version>3.1.3rc0</version>
     </dependency>
     <dependency repo = "sc_ethernet">
-        <githash>3db65a9cd09d968d0f8e59550f900cc8b6b77401</githash>
+        <githash>dabdb3830df0c844a08f733a14fda32bd04144ee</githash>
         <uri>git@github.com:xcore/sc_ethernet</uri>
-        <version>2.2.2rc0</version>
+        <version>2.2.4rc0</version>
     </dependency>
     <dependency repo = "sc_otp">
         <githash>062aa923a78bc603b254b2a99b78593ab3a816ec</githash>
@@ -82,7 +83,8 @@
     <release parenthash = "4d02ded93b2afb1a727c13fb34887605d9334a0f" version = "1.0.0alpha2" githash = "4fb62c204089442c26eb255fa2d38962ebe5788d"></release>
     <release parenthash = "70fe64ddde6101a92b7e79bf7e4f6438d38ab78a" version = "1.0.0alpha3" githash = "f348a30581cc873310962220cbe13c391fb9b401"></release>
     <release parenthash = "f348a30581cc873310962220cbe13c391fb9b401" version = "1.0.0rc0" githash = "0da0c25c95adc0b1786e7e5d058c0b15de789946"></release>
-    <release parenthash = "9272a9f10d8588083e9e97cdd6d4931734cf65e1" version = "1.0.1beta0"></release>
+    <release parenthash = "9272a9f10d8588083e9e97cdd6d4931734cf65e1" version = "1.0.1beta0" githash = "58bf9be53dc2575c7e64e7493782f7335eec729c"></release>
+    <release parenthash = "657e8cf395becdfd609276d309670a487c97274d" version = "1.0.2rc0"></release>
     <subpartnumber>XM-002085-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sc_website</xcore_repo>
