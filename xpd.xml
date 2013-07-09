@@ -77,6 +77,11 @@
         <uri>git@github.com:xcore/sc_wifi</uri>
         <version>1.0.0rc0</version>
     </dependency>
+    <dependency repo = "sc_spi">
+        <githash>16898e9423ff46c1516a436a865730df85457b6b</githash>
+        <uri>git@github.com:xcore/sc_spi</uri>
+        <version>1.3.0rc1</version>
+    </dependency>
     <description>Embedded website component repository</description>
     <docdir>doc</docdir>
     <location>git@github.com:xcore/sc_website</location>
@@ -90,7 +95,7 @@
     <release parenthash = "f348a30581cc873310962220cbe13c391fb9b401" version = "1.0.0rc0" githash = "0da0c25c95adc0b1786e7e5d058c0b15de789946"></release>
     <release parenthash = "9272a9f10d8588083e9e97cdd6d4931734cf65e1" version = "1.0.1beta0" githash = "58bf9be53dc2575c7e64e7493782f7335eec729c"></release>
     <release parenthash = "657e8cf395becdfd609276d309670a487c97274d" version = "1.0.2rc0" githash = "0948f7bda1e7d505498dfd2ea9acbaf6cdef1553"></release>
-    <release parenthash = "a25e4997542e2558dad27d41fe772333e8f3e989" version = "1.0.2rc1"></release>
+    <release parenthash = "a25e4997542e2558dad27d41fe772333e8f3e989" version = "1.0.2rc1" githash = "b0b63b6d6b3b3207efacfcdf9e83ef1a4e8a5e3e"></release>
     <subpartnumber>XM-002085-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sc_website</xcore_repo>
