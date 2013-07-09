@@ -24,12 +24,12 @@
             <componentDependency>module_otp_board_info</componentDependency>
             <componentDependency>module_locks</componentDependency>
             <componentDependency>module_wifi_tiwisl</componentDependency>
-            <componentDependency>module_xtcp</componentDependency>
+            <componentDependency>module_ethernet</componentDependency>
             <componentDependency>module_ethernet_board_support</componentDependency>
             <componentDependency>module_spi_master</componentDependency>
             <componentDependency>module_mutual_thread_comm</componentDependency>
             <componentDependency>module_ethernet_smi</componentDependency>
-            <componentDependency>module_ethernet</componentDependency>
+            <componentDependency>module_xtcp</componentDependency>
             <keyword>ethernet</keyword>
             <keyword>http</keyword>
             <keyword>tcp</keyword>
@@ -96,6 +96,7 @@
     <release parenthash = "9272a9f10d8588083e9e97cdd6d4931734cf65e1" version = "1.0.1beta0" githash = "58bf9be53dc2575c7e64e7493782f7335eec729c"></release>
     <release parenthash = "657e8cf395becdfd609276d309670a487c97274d" version = "1.0.2rc0" githash = "0948f7bda1e7d505498dfd2ea9acbaf6cdef1553"></release>
     <release parenthash = "a25e4997542e2558dad27d41fe772333e8f3e989" version = "1.0.2rc1" githash = "b0b63b6d6b3b3207efacfcdf9e83ef1a4e8a5e3e"></release>
+    <release parenthash = "32a8f1e8b9805670ee3b8c7f8c337d6462ecf640" version = "1.0.2rc2"></release>
     <subpartnumber>XM-002085-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sc_website</xcore_repo>
