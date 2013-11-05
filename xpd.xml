@@ -84,6 +84,8 @@
     </dependency>
     <description>Embedded website component repository</description>
     <docdir>doc</docdir>
+    <docdir>app_webserver_demo/doc_quickstart</docdir>
+    <docdir>app_webserver_demo_flash/doc_quickstart</docdir>
     <location>git@github.com:xcore/sc_website</location>
     <name>sc_website</name>
     <maintainer>davelxmos</maintainer>
