@@ -27,6 +27,7 @@ select web_server_flash(chanend c_flash,
  case mutual_comm_notified(c_flash): {
    simplefs_addr_t request_addr;
    c_flash :> request_addr;
+   mutual_comm_complete(c_flash);
    fl_connectToDevice(flash_ports,
                       WEB_SERVER_FLASH_DEVICES,
                       WEB_SERVER_NUM_FLASH_DEVICES);
@@ -38,6 +39,7 @@ select web_server_flash(chanend c_flash,
      for (int i=0;i<WEB_SERVER_FLASH_CACHE_SIZE;i++)
        c_flash <: web_server_flash_cache[i];
    }
+   mutual_comm_complete(c_flash);
  }
  break;
 }
