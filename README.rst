@@ -1,7 +1,7 @@
 Embedded Website Component
 ..........................
 
-:Latest release: 1.0.2rc2
+:Latest release: 1.0.3rc0
 :Maintainer: davelxmos
 :Description: Embedded website component repository
 
@@ -17,10 +17,11 @@ To Do
 Required software (dependencies)
 ================================
 
-  * sc_util (git@github.com:xcore/sc_util)
   * sc_xtcp (git@github.com:xcore/sc_xtcp)
-  * sc_ethernet (git@github.com:xcore/sc_ethernet)
-  * sc_otp (git@github.com:xcore/sc_otp)
+  * sc_ethernet (git@github.com:xcore/sc_ethernet.git)
+  * sc_slicekit_support (git@github.com:xcore/sc_slicekit_support)
   * sc_wifi (git@github.com:xcore/sc_wifi)
-  * sc_spi (git@github.com:xcore/sc_spi)
+  * sc_otp (git@github.com:xcore/sc_otp)
+  * sc_util (git@github.com:xcore/sc_util)
+  * sc_spi (https://github.com/xcore/sc_spi.git)
 
