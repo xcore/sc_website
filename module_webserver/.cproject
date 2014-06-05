@@ -156,37 +156,43 @@
 								<option id = "com.xmos.xc.compiler.option.include.paths.47407416" name="com.xmos.xc.compiler.option.include.paths" superClass="com.xmos.xc.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/igmp}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_otp_board_info}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_locks}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/dhcpc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/common}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/full}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_spi_master/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/common}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/.settings}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl/.settings}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_otp_board_info/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_spi_master}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_mutual_thread_comm}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet_smi}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/include}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/lite}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet_smi/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/.example_web}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet_smi}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/lite}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/include}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl/src/wifi_tiwisl}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_locks/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/autoip}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_locks}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_mutual_thread_comm/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_mutual_thread_comm}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_otp_board_info/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_otp_board_info}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_spi_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_spi_master}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/.example_web}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl/src/wifi_tiwisl}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/autoip}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/dhcpc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/igmp}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki/lib}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki/net/rime}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki/net/rpl}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki/net}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki/sys}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/uip_arch}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp}&quot;' />
 
 								</option>
 								<inputType id = "com.xmos.cdt.xc.compiler.input.13443534" name="XC" superClass="com.xmos.cdt.xc.compiler.input"/>
@@ -298,37 +304,43 @@
 								<option id = "com.xmos.c.compiler.option.include.paths.2570904" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/igmp}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_otp_board_info}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_locks}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/dhcpc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/common}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/full}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_spi_master/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/common}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/.settings}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl/.settings}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_otp_board_info/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_spi_master}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_mutual_thread_comm}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet_smi}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/include}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/lite}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet_smi/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/.example_web}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet_smi}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/lite}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/include}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl/src/wifi_tiwisl}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_locks/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/autoip}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_locks}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_mutual_thread_comm/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_mutual_thread_comm}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_otp_board_info/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_otp_board_info}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_spi_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_spi_master}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/.example_web}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl/src/wifi_tiwisl}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/autoip}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/dhcpc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/igmp}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki/lib}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki/net/rime}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki/net/rpl}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki/net}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki/sys}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/uip_arch}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp}&quot;' />
 
 								</option>
 								<inputType id = "com.xmos.cdt.c.compiler.input.c.64491798" name="C" superClass="com.xmos.cdt.c.compiler.input.c"/>
@@ -446,37 +458,43 @@
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/c++/4.2.1&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/c++/4.2.1/xcore-xmos-elf&quot;"/>
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/igmp}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_otp_board_info}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_locks}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/dhcpc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/common}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/full}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_spi_master/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/common}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/.settings}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl/.settings}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_otp_board_info/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_spi_master}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/gen}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_mutual_thread_comm}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet_smi}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/include}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/lite}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet_smi/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/.example_web}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet_smi}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/lite}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_ethernet/src/include}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl/src/wifi_tiwisl}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_locks/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/autoip}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_locks}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_mutual_thread_comm/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_mutual_thread_comm}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_otp_board_info/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_otp_board_info}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_spi_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_spi_master}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/.example_web}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/gen}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_webserver}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl/src/wifi_tiwisl}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_wifi_tiwisl}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/autoip}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/dhcpc}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip/igmp}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki/lib}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki/net/rime}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki/net/rpl}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki/net}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki/sys}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/contiki}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6/uip_arch}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip6}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src/xtcp_uip}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_xtcp}&quot;' />
 
 								</option>
 								<inputType id = "com.xmos.cdt.cxx.compiler.input.cpp.33332216" name="C++" superClass="com.xmos.cdt.cxx.compiler.input.cpp"/>
