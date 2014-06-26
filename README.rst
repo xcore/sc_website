@@ -1,7 +1,7 @@
 Embedded Website Component
 ..........................
 
-:Latest release: 1.0.3rc0
+:Latest release: 1.0.3rc1
 :Maintainer: davelxmos
 :Description: Embedded website component repository
 

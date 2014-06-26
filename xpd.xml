@@ -2,17 +2,17 @@
 <xpd>
     <components>
         <component description = "A simple demo of the embedded website component" type = "demoCode" scope = "Example" path = "app_webserver_demo" local = "false" id = "app_webserver_demo" name = "Embedded Webserver Demo (No SPI Flash)">
-            <componentDependency repo = "git://github.com/xcore/sc_wifi.git" version = "1.1.2">module_wifi_tiwisl</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_website" version = "1.0.3">module_webserver</componentDependency>
             <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.4">module_locks</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.4">module_mutual_thread_comm</componentDependency>
             <componentDependency repo = "git://github.com/xcore/sc_spi" version = "1.4.0">module_spi_master</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_website" version = "1.0.2">module_webserver</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.4">module_mutual_thread_comm</componentDependency>
             <componentDependency repo = "git://github.com/davelxmos/sc_xtcp" version = "3.2.1">module_xtcp</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.2">module_ethernet_smi</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.2">module_ethernet_board_support</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_wifi.git" version = "1.0.0">module_wifi_tiwisl</componentDependency>
             <componentDependency repo = "git://github.com/xcore/sc_otp" version = "1.0.0">module_otp_board_info</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.4">module_mutual_thread_comm</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.1">module_ethernet_board_support</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.1">module_ethernet_smi</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.4">module_mutual_thread_comm</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.1">module_ethernet</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.2">module_ethernet</componentDependency>
             <keyword>ethernet</keyword>
             <keyword>http</keyword>
             <keyword>tcp</keyword>
@@ -20,18 +20,18 @@
             <keyword>webserver</keyword>
         </component>
         <component description = "A simple demo of the embedded website component" type = "demoCode" scope = "Example" path = "app_webserver_demo_flash" local = "false" id = "app_webserver_demo_flash" name = "Embedded Webserver Demo (SPI Flash)">
-            <componentDependency repo = "git://github.com/xcore/sc_slicekit_support.git" version = "1.0.4">module_slicekit_support</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.2">module_ethernet_board_support</componentDependency>
             <componentDependency repo = "git://github.com/xcore/sc_spi" version = "1.4.0">module_spi_master</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_website" version = "1.0.2">module_webserver</componentDependency>
-            <componentDependency repo = "git://github.com/davelxmos/sc_xtcp" version = "3.2.1">module_xtcp</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.4">module_mutual_thread_comm</componentDependency>
             <componentDependency repo = "git://github.com/xcore/sc_otp" version = "1.0.0">module_otp_board_info</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.2">module_ethernet_smi</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_slicekit_support.git" version = "1.0.4">module_slicekit_support</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.2">module_ethernet</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_website" version = "1.0.3">module_webserver</componentDependency>
             <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.4">module_mutual_thread_comm</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.1">module_ethernet</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_wifi.git" version = "1.1.2">module_wifi_tiwisl</componentDependency>
+            <componentDependency repo = "git://github.com/davelxmos/sc_xtcp" version = "3.2.1">module_xtcp</componentDependency>
             <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.4">module_locks</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.1">module_ethernet_board_support</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.1">module_ethernet_smi</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.4">module_mutual_thread_comm</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_wifi.git" version = "1.0.0">module_wifi_tiwisl</componentDependency>
             <keyword>ethernet</keyword>
             <keyword>http</keyword>
             <keyword>tcp</keyword>
@@ -39,15 +39,15 @@
             <keyword>webserver</keyword>
         </component>
         <component name = "Embedded Webserver Function Library" type = "component" buildresults_path = "module_webserver/.module_webserver.buildinfo" scope = "General Use" path = "module_webserver" metainfo_path = "module_webserver/module_webserver.metainfo" local = "false" id = "module_webserver" description = "A library for adding an embedded website to your code">
-            <componentDependency repo = "git://github.com/xcore/sc_wifi.git" version = "1.1.2">module_wifi_tiwisl</componentDependency>
             <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.4">module_locks</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_spi" version = "1.4.0">module_spi_master</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.1">module_ethernet_smi</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.4">module_mutual_thread_comm</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.4">module_mutual_thread_comm</componentDependency>
             <componentDependency repo = "git://github.com/davelxmos/sc_xtcp" version = "3.2.1">module_xtcp</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.4">module_mutual_thread_comm</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.2">module_ethernet_smi</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_spi" version = "1.4.0">module_spi_master</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_wifi.git" version = "1.0.0">module_wifi_tiwisl</componentDependency>
             <componentDependency repo = "git://github.com/xcore/sc_otp" version = "1.0.0">module_otp_board_info</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.4">module_mutual_thread_comm</componentDependency>
-            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.1">module_ethernet</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.3.2">module_ethernet</componentDependency>
             <keyword>ethernet</keyword>
             <keyword>http</keyword>
             <keyword>tcp</keyword>
@@ -103,6 +103,7 @@
     <release parenthash = "a25e4997542e2558dad27d41fe772333e8f3e989" version = "1.0.2rc1" githash = "b0b63b6d6b3b3207efacfcdf9e83ef1a4e8a5e3e"></release>
     <release parenthash = "32a8f1e8b9805670ee3b8c7f8c337d6462ecf640" version = "1.0.2rc2" githash = "a3c61917a449fda2f930c7bd43e14e9d014986aa"></release>
     <release parenthash = "ca72f65fbc53d5a61c46657cc595517f47ca0331" version = "1.0.3rc0" githash = "0ea5f32d7f2d57aa58bb5065ef924e6d48c29186"></release>
+    <release parenthash = "d839c2fe5891cab84c31a6e14929404d0491b1d4" version = "1.0.3rc1"></release>
     <subpartnumber>XM-002085-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <version_defines></version_defines>
