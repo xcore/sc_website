@@ -46,7 +46,7 @@ def process_file(path):
     global dyn_exprs, dyn_expr_count, decls
     (typ,_) = mimetypes.guess_type(path)
     if not typ:
-        type = 'application/octet-stream'
+        typ = 'application/octet-stream'
 
     if re.match('text/.*',typ):
         fs_type = fs_type_template
